@@ -4,7 +4,8 @@
   "description": "",
   "main": "src/app.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "node src/app.js"
   },
   "author": "s.nakamura",
   "license": "ISC",
