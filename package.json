@@ -1,0 +1,14 @@
+{
+  "name": "nodejs_arch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "s.nakamura",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
