@@ -32,18 +32,28 @@ app.get('/get-music-profile', function (req, res) {
       json: true
     };
     request.post(authOptions, function(error, response, body) {
-      if (!error && response.statusCode === 200) {
+        if (error || response.statusCode != 200) {
+            return res.send(response);
+        }
+        const musicURL = req.query.id;
+        let ids, id;
+        let r = new RegExp('https://open.spotify.com/track/(.*)');
+        if ((ids = r.exec(musicURL)) === null) {
+            return res.send(response);
+        }
+        id = ids[1];
+
         const access_token = body.access_token;
-        const id = req.query.id || '5MueU1zNabzwtYbeqvyDKg';
         const options = {
-          url: `https://api.spotify.com/v1/tracks/${id}`,
-          headers: { 'Authorization': 'Bearer ' + access_token },
-          json: true
+            url: `https://api.spotify.com/v1/tracks/${id}`,
+            headers: { 'Authorization': 'Bearer ' + access_token },
+            json: true
         };
         request.get(options, function(error, response, body) {
-          res.send(body.name + ' / ' + body.artists[0].name);
+            if (error || response.statusCode != 200) {
+                return res.send("MISS!");
+            }
+            res.send(body.name + ' / ' + body.artists[0].name + '\r\n' + musicURL);
         });
-      } else {
-        return res.send(response);}
     });
   });
