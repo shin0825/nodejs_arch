@@ -12,4 +12,7 @@ app.get("/", function(req, res){
 
 //サーバの設定
 const server = http.createServer(app);
-server.listen(3000);
+const port = process.env.PORT || 8114;
+server.listen(port, () => {
+    console.log("OK, Application is running now on port " + PORT + " !");
+});
