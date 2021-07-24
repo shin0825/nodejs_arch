@@ -14,5 +14,5 @@ app.get("/", function(req, res){
 const server = http.createServer(app);
 const port = process.env.PORT || 8114;
 server.listen(port, () => {
-    console.log("OK, Application is running now on port " + PORT + " !");
+    console.log("OK, Application is running now on port " + port + " !");
 });
